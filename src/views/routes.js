@@ -2,12 +2,15 @@ import { isAuthenticated } from 'core/auth';
 import App from './app';
 import SignInPage from './pages/sign-in';
 import TasksPage from './pages/tasks';
+import HomePage from './pages/homepage';
 
 
 export const paths = {
   ROOT: '/',
   SIGN_IN: '/sign-in',
-  TASKS: '/'
+  TASKS: '/',
+  ADMIN: '/admin',
+  ADMIN_HOMEPAGE: '/edit_homepage'
 };
 
 
@@ -43,6 +46,11 @@ export const getRoutes = getState => {
         path: paths.SIGN_IN,
         component: SignInPage,
         onEnter: requireUnauth(getState)
+      },
+      {
+        path: `${paths.ADMIN}${paths.ADMIN_HOMEPAGE}`,
+        component: HomePage,
+        onEnter: requireAuth(getState)
       }
     ]
   };
