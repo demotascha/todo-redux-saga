@@ -3,6 +3,7 @@ import App from './app';
 import SignInPage from './pages/sign-in';
 import TasksPage from './pages/tasks';
 import HomePage from './pages/homepage';
+import HomeSimpleForm from './pages/form';
 
 
 export const paths = {
@@ -10,7 +11,8 @@ export const paths = {
   SIGN_IN: '/sign-in',
   TASKS: '/',
   ADMIN: '/admin',
-  ADMIN_HOMEPAGE: '/edit_homepage'
+  ADMIN_HOMEPAGE: '/edit_homepage',
+  HOMEPAGE: '/home'
 };
 
 
@@ -51,6 +53,11 @@ export const getRoutes = getState => {
         path: `${paths.ADMIN}${paths.ADMIN_HOMEPAGE}`,
         component: HomePage,
         onEnter: requireAuth(getState)
+      },
+      {
+        path: paths.HOMEPAGE,
+        component: HomeSimpleForm,
+        onEnter: requireUnauth(getState)
       }
     ]
   };
